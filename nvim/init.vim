@@ -69,6 +69,7 @@ map <leader>te :tabedit <C-r>=escape(expand("%:p:h"), " ")<cr>/
 
 " Switch CWD
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+nmap <leader>cl :let @+=expand("%p:h")<cr>:pwd<cr>
 
 " ack.vim
 map <leader>g :Ack 

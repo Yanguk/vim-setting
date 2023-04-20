@@ -1,1 +1,0 @@
-/Users/yanguk/.config/nvim/init.vim

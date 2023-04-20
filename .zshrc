@@ -126,6 +126,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias vimdiff="nvim -d"
 
+# knowre ------------------
 # gettext
 export PATH="/opt/homebrew/bin/gettext/bin:$PATH"
 
