@@ -42,10 +42,6 @@ let mapleader = ","
 nmap <leader>w :w!<cr>
 
 " ----Nomal
-" search
-map <space> /
-" backwards search
-map <C-space> ?
 " Disable highlights when you press <leader><cr>
 map <silent> <leader><cr> :noh<cr>
 " Smart way to move between windows (<ctrl>j etc.)
@@ -53,10 +49,7 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-" Close current buffer
-map <leader>bd :Bclose<cr>
-" Close all buffers
-map <leader>ba :1,1000 bd!<cr>
+
 " mnanaging tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
@@ -73,8 +66,6 @@ nmap <leader>cl :let @+=expand("%p:h")<cr>:pwd<cr>
 
 " ack.vim
 map <leader>g :Ack 
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode
 map <leader>pp :setlocal paste!<cr>
@@ -83,6 +74,21 @@ map <leader>pp :setlocal paste!<cr>
 map <leader>bp :bp<cr>
 map <leader>bn :bn<cr>
 map <leader>ls :ls<cr>
+
+" Quickly open a buffer for scripbble:
+map <leader>q :e ~/buffer<cr>
+
+" buf
+map <leader>o :BufExplorer<cr>
+
+" ctrlp
+" Quickly find and open a file in the CWD
+let g:ctrlp_map = '<C-f>'
+
+" Quickly find and open a recently opened file
+map <leader>f :CtrlPMRU<CR>
+" Quickly find and open a buffer
+map <leader>bb :CtrlPBuffer<cr>
 
 " -------visual
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
@@ -132,9 +138,6 @@ inoremap $t <><esc>i
 " vim-multiple-cursors mappings to manage multiple cursors at once:
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-s>'
-let g:multi_cursor_select_all_word_key = '<A-s>'
-let g:multi_cursor_start_key           = 'g<C-s>'
-let g:multi_cursor_select_all_key      = 'g<A-s>'
 let g:multi_cursor_next_key            = '<C-s>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
@@ -145,32 +148,11 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
 
-" buf
-map <leader>o :BufExplorer<cr>
-
-" ctrlp
-" Quickly find and open a file in the CWD
-let g:ctrlp_map = '<C-f>'
-" Quickly find and open a recently opened file
-map <leader>f :CtrlPMRU<CR>
-" Quickly find and open a buffer
-map <leader>b :CtrlPBuffer<cr>
-
 " GOYO
 let g:goyo_width=100
 let g:goyo_margin_top = 2
 let g:goyo_margin_bottom = 2
 map <leader>z :Goyo<cr>
-
-" Cope
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-" vim-fugitive copy link to the line of a git repository  to the clipboard:
-nnoremap <leader>v :.GBrowse!<CR>
-xnoremap <leader>v :'<'>GBrowse!<CR>
 
 " git gutter
 let g:gitgutter_enabled=0
@@ -178,10 +160,11 @@ nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
 " ----------------- it's me
 
-" colorscheme atom-dark
 syntax on
 colorscheme onedark
+" colorscheme jellybeans
 
+" nvim color
 if (empty($TMUX))
   if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -227,10 +210,6 @@ let g:lightline = {
 " 공백 문자 표시
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-
-map <leader>ss :setlocal spell!<cr>
-set spelllang=en_us
-set spell
 
 " -------------------------------------------------------------------------------------
 " lspconfig
@@ -358,24 +337,6 @@ local cmp = require'cmp'
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities,
   }
-
-  -- spell check
-  cmp.setup({
-      sources = {
-        {
-          name = 'spell',
-          option = {
-            keep_all_entries = false,
-            enable_in_context = function()
-                return true
-            end,
-        },
-      },
-    },
-  })
-
-  vim.opt.spell = true
-  vim.opt.spelllang = { 'en_us' }
 
 	lspconfig.eslint.setup({
 		on_attach = function(client, bufnr)
