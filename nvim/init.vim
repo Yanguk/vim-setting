@@ -55,6 +55,8 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
+map <leader>tb :gt<cr>
+map <leader>tp :gT<cr>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -74,9 +76,6 @@ map <leader>pp :setlocal paste!<cr>
 map <leader>bp :bp<cr>
 map <leader>bn :bn<cr>
 map <leader>ls :ls<cr>
-
-" Quickly open a buffer for scripbble:
-map <leader>q :e ~/buffer<cr>
 
 " buf
 map <leader>o :BufExplorer<cr>
