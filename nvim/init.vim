@@ -211,6 +211,13 @@ let g:lightline = {
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+" spell check
+map <leader>ss :setlocal spell!<cr>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
 " -------------------------------------------------------------------------------------
 " lspconfig
 lua << EOF
@@ -425,8 +432,19 @@ cmp.setup({
     { name = "vsnip" },
     { name = "path" },
     { name = "buffer" },
+    {
+      name = 'spell',
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+        return true
+        end,
+      },
+    }
   },
 })
 
-EOF
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 
+EOF
